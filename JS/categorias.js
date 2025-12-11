@@ -2,9 +2,12 @@ const tblCategorias = document.getElementById("tablaCategorias");
 let categoriasGlobales = [];
 let paginaActual = 0;
 let totalPaginas = 0;
+const sortHelper = new SortHelper("codigo");
 
 function obtenerCategorias(pagina = 0) {
-  fetch(`http://localhost:8080/api/categoria/listar?page=${pagina}&size=20`)
+  fetch(
+    `http://localhost:8080/api/categoria/listar?page=${pagina}&size=20&${sortHelper.getParams()}`
+  )
     .then((response) => response.json())
     .then((data) => {
       // La API devuelve una respuesta paginada (objeto con 'content')
@@ -79,6 +82,13 @@ function paginaSiguiente() {
   }
 }
 
+function ordenarPor(campo) {
+  sortHelper.ordenarPor(campo, () => {
+    sortHelper.actualizarIconos(["codigo", "nombre", "activo"]);
+    obtenerCategorias(paginaActual);
+  });
+}
+
 obtenerCategorias();
 
 async function registrarCategoria(event) {
@@ -92,7 +102,7 @@ async function registrarCategoria(event) {
 
   try {
     const response = await fetch(
-      "http://localhost:8080/api/categoria/register",
+      "http://localhost:8080/api/categoria/registrar",
       {
         method: "POST",
         headers: {

@@ -2,9 +2,11 @@ const tablaProductos = document.getElementById("tablaProductos");
 let productosGlobales = [];
 let paginaActual = 0;
 let totalPaginas = 0;
+const sortHelper = new SortHelper("codigo");
 
 function obtenerProductos(pagina = 0) {
-  fetch(`http://localhost:8080/api/producto/listar?page=${pagina}&size=20`)
+  const url = `http://localhost:8080/api/producto/listar?page=${pagina}&size=20&${sortHelper.getParams()}`;
+  fetch(url)
     .then((response) => response.json())
     .then((data) => {
       // La API devuelve una respuesta paginada (objeto con 'content')
@@ -81,10 +83,49 @@ function paginaSiguiente() {
   }
 }
 
+function ordenarPor(campo) {
+  sortHelper.ordenarPor(campo, () => {
+    sortHelper.actualizarIconos([
+      "codigo",
+      "nombre",
+      "marca",
+      "categoria",
+      "precio",
+    ]);
+    obtenerProductos(paginaActual);
+  });
+}
+
 obtenerProductos();
 
 function editarSuscriptor(idSuscriptor) {
   window.location.href = `editSuscriptor.html?id=${idSuscriptor}`;
+}
+
+function eliminarProducto(id) {
+  if (!confirm("¿Está seguro de eliminar el producto?")) return;
+
+  fetch(`http://localhost:8080/api/producto/${id}`, {
+    method: "DELETE",
+  })
+    .then(async (response) => {
+      if (!response.ok) {
+        try {
+          const errorData = await response.json();
+          const mensajeError =
+            errorData.error || "No se logro eliminar el producto.";
+          alert(mensajeError);
+        } catch (e) {
+          alert("No se logro eliminar el producto.");
+        }
+        return;
+      }
+      alert("Producto eliminado exitosamente.");
+      obtenerProductos();
+    })
+    .catch(() => {
+      alert("Error de conexión al intentar eliminar el producto");
+    });
 }
 
 // Cargar categorías desde el backend para el selector
@@ -159,7 +200,7 @@ async function registrarProducto(event) {
 
   try {
     const response = await fetch(
-      "http://localhost:8080/api/producto/register",
+      "http://localhost:8080/api/producto/registrar",
       {
         method: "POST",
         headers: {

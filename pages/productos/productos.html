@@ -35,12 +35,22 @@
                 <table class="table table-hover mb-0">
                     <thead class="sticky-top" style="background-color: #7C7FD9; color: white; z-index: 10;">
                         <tr>
-                            <th scope="col">Codigo</th>
-                            <th scope="col">Nombre</th>
+                            <th scope="col" style="cursor: pointer;" onclick="ordenarPor('codigo')">
+                                Codigo <span id="icon-codigo"><i class="bi bi-arrow-down-up"></i></span>
+                            </th>
+                            <th scope="col" style="cursor: pointer;" onclick="ordenarPor('nombre')">
+                                Nombre <span id="icon-nombre"><i class="bi bi-arrow-down-up"></i></span>
+                            </th>
                             <th scope="col">Descripción</th>
-                            <th scope="col">Marca</th>
-                            <th scope="col">Categoria</th>
-                            <th scope="col">Precio</th>
+                            <th scope="col" style="cursor: pointer;" onclick="ordenarPor('marca')">
+                                Marca <span id="icon-marca"><i class="bi bi-arrow-down-up"></i></span>
+                            </th>
+                            <th scope="col" style="cursor: pointer;" onclick="ordenarPor('categoria')">
+                                Categoria <span id="icon-categoria"><i class="bi bi-arrow-down-up"></i></span>
+                            </th>
+                            <th scope="col" style="cursor: pointer;" onclick="ordenarPor('precio')">
+                                Precio <span id="icon-precio"><i class="bi bi-arrow-down-up"></i></span>
+                            </th>
                             <th scope="col" style="text-align: center;">Acciones</th>
                         </tr>
                     </thead>
@@ -76,6 +86,7 @@
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
 
+    <script src="/JS/sortHelper.js"></script>
     <script src="/JS/productos.js"></script>
 </body>
 
