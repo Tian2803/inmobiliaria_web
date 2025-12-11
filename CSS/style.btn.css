@@ -1,0 +1,79 @@
+.delete-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: inline;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.delete-button .bi-trash-fill {
+  font-size: 27px;
+  color: #ff0000;
+}
+
+.delete-button:hover .bi-trash-fill {
+  color: #ff0000;
+}
+
+.edit-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: inline;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.edit-button .bi-pencil-square {
+  font-size: 27px;
+  color: #00ff2a;
+}
+
+.edit-button:hover .bi-pencil-square {
+  color: #00ff2a;
+}
+
+.ver-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: inline;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ver-button .bi-eye-fill {
+  font-size: 27px;
+  color: #003cff;
+}
+
+.ver-button:hover .bi-eye-fill {
+  color: #003cff;
+}
+
+td {
+  vertical-align: middle;
+}
+
+.calendar-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: inline;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.calendar-button .bi-calendar2-month-fill {
+  font-size: 27px;
+  color: #003cff;
+}
+
+.calendar-button:hover .bi-calendar2-month-fill {
+  color: #003cff;
+}

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Inmobiliaria</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css"
+        rel="stylesheet">
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/CSS/style.search_box.css">
+    <link rel="stylesheet" href="/CSS/style.btn.css">
+</head>
+
+<body style="margin: 0; padding: 0; overflow: hidden;">
+    <header>
+        <!-- place navbar here -->
+    </header>
+    <div id="header"></div>
+    <main style="height: 100vh; display: flex; flex-direction: column; padding: 10px; box-sizing: border-box;">
+        <div class="container mb-2">
+            <div class="container-fluid">
+                <form class="d-flex justify-content-center">
+                    <input class="form-control me-2 w-25" id="filtroGeneral" type="search" placeholder="Search"
+                        aria-label="Search" oninput="filtrarCategorias()">
+                </form>
+            </div>
+        </div>
+        <div class="card" style="flex: 1; display: flex; flex-direction: column; overflow: hidden; margin: 0;">
+            <div
+                class="card-header text-center p-3 d-flex justify-content-between align-items-center bg-primary text-white">
+                <h5 class="mb-0 flex-grow-1">Categorias</h5>
+                <a href="registroCategoria.html" class="btn btn-light btn-sm">
+                    <i class="bi bi-plus-circle"></i> Registrar
+                </a>
+            </div>
+            <div class="card-body p-0" style="flex: 1; overflow-y: auto; position: relative;">
+                <table class="table table-hover mb-0">
+                    <thead class="sticky-top" style="background-color: #7C7FD9; color: white; z-index: 10;">
+                        <tr>
+                            <th scope="col">Código</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Activo</th>
+                            <th scope="col" style="text-align: center;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaCategorias">
+
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Controles de paginación -->
+            <div class="card-footer bg-white border-top">
+                <div id="paginacion" class="d-flex justify-content-between align-items-center">
+                    <button id="btnAnterior" class="btn btn-secondary btn-sm" onclick="paginaAnterior()">
+                        <i class="bi bi-chevron-left"></i> Anterior
+                    </button>
+                    <span id="infoPagina" class="fw-bold">Página 1 de 1</span>
+                    <button id="btnSiguiente" class="btn btn-secondary btn-sm" onclick="paginaSiguiente()">
+                        Siguiente <i class="bi bi-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <!-- place footer here -->
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+
+    <script src="/JS/categorias.js"></script>
+</body>
+
+</html>
