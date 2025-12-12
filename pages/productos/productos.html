@@ -23,9 +23,44 @@
     </header>
 
     <main style="height: 100vh; display: flex; flex-direction: column; padding: 10px; box-sizing: border-box;">
+        <div class="p-1 border-bottom bg-light">
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <label class="form-label">Nombre</label>
+                    <input type="text" id="filtroNombre" class="form-control" placeholder="Escriba un nombre">
+                </div>
+
+                <div class="col-md-2">
+                    <label class="form-label">Marca</label>
+                    <input type="text" id="filtroMarca" class="form-control" placeholder="Escriba una marca">
+                </div>
+
+                <div class="col-md-2">
+                    <label class="form-label">Categoría</label>
+                    <select id="filtroCategoria" class="form-select">
+                        <option value="">Todas</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">Rango de precio</label>
+                    <div class="input-group">
+                        <span class="input-group-text">$</span>
+                        <input type="number" id="filtroPrecioMin" class="form-control" placeholder="Min">
+                        <span class="input-group-text">-</span>
+                        <input type="number" id="filtroPrecioMax" class="form-control" placeholder="Max">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center align-items-end col-md-2">
+                    <button class="btn btn-primary me-2" onclick="obtenerProductos(0)">Buscar</button>
+                    <button class="btn btn-secondary" onclick="limpiarFiltros()">Limpiar</button>
+                </div>
+            </div>
+        </div>
+
         <div class="card" style="flex: 1; display: flex; flex-direction: column; overflow: hidden; margin: 0;">
             <div
-                class="card-header text-center p-3 d-flex justify-content-between align-items-center bg-primary text-white">
+                class="card-header text-center p-2 d-flex justify-content-between align-items-center bg-primary text-white">
                 <h5 class="mb-0 flex-grow-1">Productos</h5>
                 <a href="registroProducto.html" class="btn btn-light btn-sm">
                     <i class="bi bi-plus-circle"></i> Registrar

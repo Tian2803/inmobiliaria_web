@@ -23,17 +23,36 @@
     </header>
     <div id="header"></div>
     <main style="height: 100vh; display: flex; flex-direction: column; padding: 10px; box-sizing: border-box;">
-        <div class="container mb-2">
-            <div class="container-fluid">
-                <form class="d-flex justify-content-center">
-                    <input class="form-control me-2 w-25" id="filtroGeneral" type="search" placeholder="Search"
-                        aria-label="Search" oninput="filtrarCategorias()">
-                </form>
+        <div class="p-1 border-bottom bg-light">
+            <div class="row g-3 justify-content-center">
+                <div class="col-md-2">
+                    <label class="form-label">Código</label>
+                    <input type="text" id="filtroCodigo" class="form-control" placeholder="Escriba un código">
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">Nombre</label>
+                    <input type="text" id="filtroNombre" class="form-control" placeholder="Escriba un nombre">
+                </div>
+
+                <div class="col-md-2">
+                    <label class="form-label">Activo</label>
+                    <select id="filtroActivo" class="form-select">
+                        <option value="">Todos</option>
+                        <option value="true">Sí</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
+
+                <div class="col-md-2 d-flex align-items-end">
+                    <button class="btn btn-primary me-2" onclick="obtenerCategorias(0)">Buscar</button>
+                    <button class="btn btn-secondary" onclick="limpiarFiltros()">Limpiar</button>
+                </div>
             </div>
         </div>
         <div class="card" style="flex: 1; display: flex; flex-direction: column; overflow: hidden; margin: 0;">
             <div
-                class="card-header text-center p-3 d-flex justify-content-between align-items-center bg-primary text-white">
+                class="card-header text-center p-2 d-flex justify-content-between align-items-center bg-primary text-white">
                 <h5 class="mb-0 flex-grow-1">Categorias</h5>
                 <a href="registroCategoria.html" class="btn btn-light btn-sm">
                     <i class="bi bi-plus-circle"></i> Registrar

@@ -5,7 +5,32 @@ let totalPaginas = 0;
 const sortHelper = new SortHelper("codigo");
 
 function obtenerProductos(pagina = 0) {
-  const url = `http://localhost:8080/api/producto/listar?page=${pagina}&size=20&${sortHelper.getParams()}`;
+  let url = `http://localhost:8080/api/producto/listar?page=${pagina}&size=20&${sortHelper.getParams()}`;
+
+  // Se obtienen los valores de los filtros
+  const nombre = document.getElementById("filtroNombre")?.value.trim();
+  const marca = document.getElementById("filtroMarca")?.value.trim();
+  const categoria = document.getElementById("filtroCategoria")?.value;
+  const precioMin = document.getElementById("filtroPrecioMin")?.value;
+  const precioMax = document.getElementById("filtroPrecioMax")?.value;
+
+  // Se agregan los filtros a la URL si tienen valor
+  if (nombre) {
+    url += `&nombre=${encodeURIComponent(nombre)}`;
+  }
+  if (marca) {
+    url += `&marca=${encodeURIComponent(marca)}`;
+  }
+  if (categoria) {
+    url += `&categoria=${encodeURIComponent(categoria)}`;
+  }
+  if (precioMin) {
+    url += `&precioMin=${encodeURIComponent(precioMin)}`;
+  }
+  if (precioMax) {
+    url += `&precioMax=${encodeURIComponent(precioMax)}`;
+  }
+
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
@@ -95,6 +120,46 @@ function ordenarPor(campo) {
     obtenerProductos(paginaActual);
   });
 }
+
+// Función para limpiar filtros
+function limpiarFiltros() {
+  document.getElementById("filtroNombre").value = "";
+  document.getElementById("filtroMarca").value = "";
+  document.getElementById("filtroCategoria").value = "";
+  document.getElementById("filtroPrecioMin").value = "";
+  document.getElementById("filtroPrecioMax").value = "";
+  obtenerProductos(0);
+}
+
+// Cargar categorías en el filtro
+async function cargarCategoriasEnFiltro() {
+  try {
+    const response = await fetch(
+      "http://localhost:8080/api/categoria/listar-nombre"
+    );
+    if (!response.ok) throw new Error("Error al cargar categorías");
+
+    const data = await response.json();
+    const categorias = Array.isArray(data) ? data : data.content || [];
+
+    const selectCategoria = document.getElementById("filtroCategoria");
+    if (!selectCategoria) return;
+
+    selectCategoria.innerHTML = '<option value="">Todas</option>';
+
+    categorias.forEach((categoria) => {
+      const option = document.createElement("option");
+      option.value = categoria.id;
+      option.textContent = categoria.nombre;
+      selectCategoria.appendChild(option);
+    });
+  } catch (error) {
+    console.error("Error al cargar categorías:", error);
+  }
+}
+
+// Inicializar
+cargarCategoriasEnFiltro();
 
 obtenerProductos();
 

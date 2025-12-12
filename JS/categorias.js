@@ -5,9 +5,25 @@ let totalPaginas = 0;
 const sortHelper = new SortHelper("codigo");
 
 function obtenerCategorias(pagina = 0) {
-  fetch(
-    `http://localhost:8080/api/categoria/listar?page=${pagina}&size=20&${sortHelper.getParams()}`
-  )
+  let url = `http://localhost:8080/api/categoria/listar?page=${pagina}&size=20&${sortHelper.getParams()}`;
+
+  // Se obtienen los valores de los filtros
+  const codigo = document.getElementById("filtroCodigo")?.value.trim();
+  const nombre = document.getElementById("filtroNombre")?.value.trim();
+  const activo = document.getElementById("filtroActivo")?.value;
+
+  // Se agregan los filtros a la URL si tienen valor
+  if (codigo) {
+    url += `&codigo=${encodeURIComponent(codigo)}`;
+  }
+  if (nombre) {
+    url += `&nombre=${encodeURIComponent(nombre)}`;
+  }
+  if (activo !== "") {
+    url += `&activo=${activo}`;
+  }
+
+  fetch(url)
     .then((response) => response.json())
     .then((data) => {
       // La API devuelve una respuesta paginada (objeto con 'content')
@@ -87,6 +103,14 @@ function ordenarPor(campo) {
     sortHelper.actualizarIconos(["codigo", "nombre", "activo"]);
     obtenerCategorias(paginaActual);
   });
+}
+
+// Función para limpiar filtros
+function limpiarFiltros() {
+  document.getElementById("filtroCodigo").value = "";
+  document.getElementById("filtroNombre").value = "";
+  document.getElementById("filtroActivo").value = "";
+  obtenerCategorias(0);
 }
 
 obtenerCategorias();
