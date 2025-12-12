@@ -11,25 +11,14 @@ Sistema web que permite gestionar productos inmobiliarios y sus categorías con 
 - Gestión de productos (crear, editar, eliminar, listar)
 - Gestión de categorías
 - Paginación (20 elementos por página)
-- Interfaz responsiva
+- Filtro de informacion por parametros
+- Resumen de productos
 
 ## Tecnologías
 
 - HTML5, CSS3, JavaScript
 - Bootstrap 5.3.2
 - Fetch API
-
-## Estructura del Proyecto
-
-```
-inmobiliaria_web/
-├── CSS/                 # Estilos
-├── JS/                  # Lógica JavaScript
-└── pages/               # Páginas HTML
-    ├── index.html
-    ├── categorias/
-    └── productos/
-```
 
 ## Instalación
 
